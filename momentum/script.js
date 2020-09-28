@@ -2,7 +2,8 @@ let time = document.querySelector('.time'),
   day = document.querySelector('.day'),
   greeting = document.querySelector('.greeting'),
   yourName = document.querySelector('.name'),
-  yourFocus = document.querySelector('.focus');
+  yourFocus = document.querySelector('.focus'),
+  bgReload = document.querySelector('.bg-reload');
 
 // выводим время
 
@@ -56,10 +57,11 @@ function setBgGreet() {
   }
 }
 
-function setName(el){
+function setName(el) {
   if (el.type === 'keypress') {
-    if(el.keyCode === 13){
+    if (el.keyCode === 13) {
       localStorage.setItem('name', el.target.innerText);
+
       yourName.blur();
     }
   } else {
@@ -67,9 +69,9 @@ function setName(el){
   }
 }
 
-function setFocus(el){
+function setFocus(el) {
   if (el.type === 'keypress') {
-    if(el.keyCode === 13){
+    if (el.keyCode === 13) {
       localStorage.setItem('focus', el.target.innerText);
       yourFocus.blur();
     }
@@ -78,32 +80,43 @@ function setFocus(el){
   }
 }
 
-function getFocus(){
-  if(localStorage.getItem('focus') === null|| localStorage.getItem('focus') === '' ){
+function getFocus() {
+  if (localStorage.getItem('focus') === null || localStorage.getItem('focus') === '') {
     yourFocus.style.color = 'red';
     yourFocus.textContent = 'Напиши дело дня';
-  } else{
+  } else {
     yourFocus.textContent = localStorage.getItem('focus');
   }
 }
 
-function getName(){
-  if(localStorage.getItem('name') === null || localStorage.getItem('name') === '' ){
+function getName() {
+  if (localStorage.getItem('name') === null || localStorage.getItem('name') === '') {
     yourName.style.color = 'red';
     yourName.textContent = '[как мне к вам обращаться?]';
-  } else{  
-     
+  } else {
+
     yourName.textContent = localStorage.getItem('name');
   }
 }
 
+function changeBgr() {
 
+  if (document.body.style.backgroundImage.includes('morning')) {
+    document.body.style.backgroundImage = `url(images/day/${Math.floor(Math.random()*20 + 1)}.jpg)`;
+  } else if (document.body.style.backgroundImage.includes('day')) {
+    document.body.style.backgroundImage = `url(images/evening/${Math.floor(Math.random()*20 + 1)}.jpg)`;
+  } else if (document.body.style.backgroundImage.includes('evening')) {
+    document.body.style.backgroundImage = `url(images/night/${Math.floor(Math.random()*20 + 1)}.jpg)`;
+  } else if (document.body.style.backgroundImage.includes('night')) {
+    document.body.style.backgroundImage = `url(images/morning/${Math.floor(Math.random()*20 + 1)}.jpg)`;
+  }
+}
 
-yourName.addEventListener('keypress',setName);
-yourName.addEventListener('blur',setName);
-yourFocus.addEventListener('keypress',setFocus);
-yourFocus.addEventListener('blur',setFocus);
-
+yourName.addEventListener('keypress', setName);
+yourName.addEventListener('blur', setName);
+yourFocus.addEventListener('keypress', setFocus);
+yourFocus.addEventListener('blur', setFocus);
+bgReload.addEventListener('click', changeBgr);
 
 showTime();
 setBgGreet();

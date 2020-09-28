@@ -8,14 +8,18 @@
   <title>momentum</title>
 </head>
 <body>
-  <time class="day"></time>
-  <time class="time"></time>
-  <h1>
-    <span class="greeting"></span>
-    <span class="name" contenteditable="true"></span>
-  </h1>
-  <h2>Сегодня обязательно нужно: </h2>
-  <h2 class="focus" contenteditable="true"></h2>
+<div class="wrap">
+    <time class="day"></time>
+    <br>
+    <time class="time"></time>
+    <button class="bg-reload" aria-label="перезагрузить фон" type="button"></button>
+    <h1 class="title">
+      <span class="greeting"></span>
+      <span class="name" contenteditable="true"></span>
+    </h1>
+    <h2 class="title" >Сегодня обязательно нужно: </h2>
+    <h2 class="focus title" contenteditable="true"></h2>
+</div>
   <script src="script.js"></script>
 </body>
 </html>
