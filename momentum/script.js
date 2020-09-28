@@ -4,6 +4,8 @@ let time = document.querySelector('.time'),
   yourName = document.querySelector('.name'),
   yourFocus = document.querySelector('.focus'),
   bgReload = document.querySelector('.bg-reload');
+const blockquote = document.querySelector('blockquote');
+const btnQuote = document.querySelector('.btn-quote');
 
 // выводим время
 
@@ -102,23 +104,43 @@ function getName() {
 function changeBgr() {
 
   if (document.body.style.backgroundImage.includes('morning')) {
+   
     document.body.style.backgroundImage = `url(images/day/${Math.floor(Math.random()*20 + 1)}.jpg)`;
+   
   } else if (document.body.style.backgroundImage.includes('day')) {
+    
     document.body.style.backgroundImage = `url(images/evening/${Math.floor(Math.random()*20 + 1)}.jpg)`;
+
   } else if (document.body.style.backgroundImage.includes('evening')) {
+   
     document.body.style.backgroundImage = `url(images/night/${Math.floor(Math.random()*20 + 1)}.jpg)`;
+ 
   } else if (document.body.style.backgroundImage.includes('night')) {
+    
     document.body.style.backgroundImage = `url(images/morning/${Math.floor(Math.random()*20 + 1)}.jpg)`;
+ 
   }
 }
+async function getQuote() {
+  const url = `quote.json`;
+  const res = await fetch(url);
+  const data = await res.json();
+  blockquote.textContent = data.quoteText[Math.floor(Math.random() * data.quoteText.length)];
+ 
+}
+
+showTime();
+setBgGreet();
+getName();
+getFocus();
+getQuote();
+
+
+
 
 yourName.addEventListener('keypress', setName);
 yourName.addEventListener('blur', setName);
 yourFocus.addEventListener('keypress', setFocus);
 yourFocus.addEventListener('blur', setFocus);
 bgReload.addEventListener('click', changeBgr);
-
-showTime();
-setBgGreet();
-getName();
-getFocus();
+btnQuote.addEventListener('click', getQuote);
