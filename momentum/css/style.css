@@ -21,6 +21,10 @@ body {
   font-size: 8rem;
 }
 
+.day {
+  font-size: 4rem;
+}
+
 h1 {
   margin-bottom: 3rem;
 }
