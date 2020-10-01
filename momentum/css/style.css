@@ -10,7 +10,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding-top: 30px;
   text-align: center;
   height: 100vh;
   background-size: cover;
@@ -37,9 +38,6 @@ h2 {
 .bg-reload {
   width: 50px;
   height: 50px;
-  position: absolute;
-  top: 30px;
-  left: 30px;
   background-image: url(../images/reload.svg);
   background-repeat: no-repeat;
   background-position: center center;
@@ -49,6 +47,10 @@ h2 {
   border-radius: 50%;
   cursor: pointer;
   outline: none;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
 
 .btn-quote {
@@ -65,9 +67,11 @@ h2 {
   outline: none;
   opacity: 1;
 }
-.btn-quote:hover{
+
+.btn-quote:hover {
   opacity: 0.5;
 }
+
 .bg-reload:hover {
   opacity: 1;
 }
@@ -77,11 +81,7 @@ h2 {
   box-shadow: 0 0 0 2px white inset, 0 0 0 4px black inset
 }
 
-@media (max-width: 700px) {
-  .time {
-    font-size: 6rem;
-  }
-}
+
 
 .wrap {
   padding: 20px;
@@ -91,18 +91,50 @@ h2 {
   display: block;
   border-radius: 40%;
   box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
+
 }
 
 .quote-wrap {
-  position: absolute;
-  top: 30px;
-  right: 30px;
   width: 300px;
   padding: 20px;
+  align-items: center;
   padding-top: 10px;
   padding-bottom: 30px;
   background-color: rgba(255, 255, 255, 0.3);
   display: block;
   border-radius: 40%;
   box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
+
+}
+
+
+.weather-wrap {
+  display: block;
+  width: 300px;
+  height: 200px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: block;
+  border-radius: 40%;
+  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
+}
+
+.wrap-additions {
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .time {
+    font-size: 6rem;
+  }
+
+  .weather-wrap,
+  .quote-wrap {
+    margin: 0 auto;
+  }
 }

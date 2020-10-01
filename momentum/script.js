@@ -46,27 +46,33 @@ function setBgGreet() {
   if (hour < 5 || hour > 21) {
     document.body.style.backgroundImage = `url(images/night/${Math.floor(Math.random()*20 + 1)}.jpg)`;
     document.body.style.color = "white";
-    greeting.textContent = 'Бурной ночи ';
+    greeting.textContent = 'Бурной ночи, ';
   } else if (hour < 11) {
     document.body.style.backgroundImage = `url(images/morning/${Math.floor(Math.random()*20 + 1)}.jpg)`;
-    greeting.textContent = 'Доброе утречко ';
+    greeting.textContent = 'Доброе утречко, ';
   } else if (hour < 17) {
     document.body.style.backgroundImage = `url(images/day/${Math.floor(Math.random()*20 + 1)}.jpg)`;
-    greeting.textContent = 'Хорошего дня ';
+    greeting.textContent = 'Хорошего дня, ';
   } else {
     document.body.style.backgroundImage = `url(images/evening/${Math.floor(Math.random()*20 + 1)}.jpg)`;
-    greeting.textContent = 'Веселого вечера ';
+    greeting.textContent = 'Веселого вечера, ';
   }
+}
+
+function clear(el){
+  el.textContent = 'blabla';
 }
 
 function setName(el) {
   if (el.type === 'keypress') {
     if (el.keyCode === 13) {
-      localStorage.setItem('name', el.target.innerText);
-
+        if(localStorage.getItem('name') === ''){
+        getName();
+      }
       yourName.blur();
     }
   } else {
+    
     localStorage.setItem('name', el.target.innerText);
   }
 }
@@ -139,8 +145,10 @@ getQuote();
 
 
 yourName.addEventListener('keypress', setName);
+// yourName.addEventListener('click', clear(yourName));
 yourName.addEventListener('blur', setName);
 yourFocus.addEventListener('keypress', setFocus);
+// yourFocus.addEventListener('click', clear(yourFocus));
 yourFocus.addEventListener('blur', setFocus);
 bgReload.addEventListener('click', changeBgr);
 btnQuote.addEventListener('click', getQuote);
