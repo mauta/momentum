@@ -6,6 +6,10 @@ let time = document.querySelector('.time'),
   bgReload = document.querySelector('.bg-reload');
 const blockquote = document.querySelector('blockquote');
 const btnQuote = document.querySelector('.btn-quote');
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+const city = document.querySelector('.city');
 
 // выводим время
 
@@ -135,6 +139,23 @@ async function getQuote() {
  
 }
 
+async function getWeather() {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=08f2a575dda978b9c539199e54df03b0&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+  weatherIcon.className = 'weather-icon owf';
+  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+  temperature.textContent = `${data.main.temp}°C`;
+  weatherDescription.textContent = data.weather[0].description;
+}
+
+function setCity(event) {
+  if (event.code === 'Enter') {
+    getWeather();
+    city.blur();
+  }
+}
+
 showTime();
 setBgGreet();
 getName();
@@ -152,3 +173,5 @@ yourFocus.addEventListener('keypress', setFocus);
 yourFocus.addEventListener('blur', setFocus);
 bgReload.addEventListener('click', changeBgr);
 btnQuote.addEventListener('click', getQuote);
+document.addEventListener('DOMContentLoaded', getWeather);
+city.addEventListener('keypress', setCity);
