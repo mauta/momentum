@@ -11,6 +11,8 @@ const temperature = document.querySelector('.temperature');
 const weatherDescription = document.querySelector('.weather-description');
 const city = document.querySelector('.city');
 
+// localStorage.setItem('city', 'Город');
+
 // выводим время
 
 function showTime() {
@@ -92,6 +94,18 @@ function setFocus(el) {
   }
 }
 
+function setCity(el) {
+  if (el.type === 'keypress') {
+    if (el.keyCode === 13) {      
+      localStorage.setItem('city', el.target.innerText);
+      city.blur();
+    }
+  } else {
+    localStorage.setItem('city', el.target.innerText);
+  }
+  getWeather();
+}
+
 function getFocus() {
   if (localStorage.getItem('focus') === null || localStorage.getItem('focus') === '') {
     yourFocus.style.color = 'red';
@@ -106,10 +120,19 @@ function getName() {
     yourName.style.color = 'red';
     yourName.textContent = '[как мне к вам обращаться?]';
   } else {
-
     yourName.textContent = localStorage.getItem('name');
   }
 }
+
+function getCity() {
+  if (localStorage.getItem('city') === null || localStorage.getItem('city') === '') {
+    city.style.color = 'red';
+    city.textContent = '[Город]';
+  } else {
+    city.textContent = localStorage.getItem('city');
+  }
+}
+
 
 function changeBgr() {
 
@@ -149,19 +172,22 @@ async function getWeather() {
   weatherDescription.textContent = data.weather[0].description;
 }
 
-function setCity(event) {
-  if (event.code === 'Enter') {
-    getWeather();
-    city.blur();
-  }
-}
+// function setCity(event) {
+//   if (event.code === 'Enter') {
+//     getWeather();
+//     city.blur();
+//   }
+// }
+
+
+
 
 showTime();
 setBgGreet();
 getName();
 getFocus();
 getQuote();
-
+getCity()
 
 
 
