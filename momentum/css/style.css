@@ -22,15 +22,81 @@ body {
 
 .time {
   font-size: 7rem;
+ 
 }
 
 .day {
   font-size: 4rem;
 }
 
-h1 {
-  margin-bottom: 1rem;
+.greeting,
+.focus_intro {
+  font-size: 1.7rem;
+  margin-right: .5rem;
 }
+
+.focus_intro{
+  margin-bottom: 2rem;
+}
+
+.name_text,
+.focus_text{
+  font-size: 2.2rem;
+}
+
+.name_label{
+  margin: 0 auto;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+
+
+.hidden{
+  display: none;
+}
+
+.name_input,
+.focus_input{
+  background-color: transparent;
+  width: 210px; 
+  padding: 0 20px;
+  font-size: 1.7rem;
+  border-radius: 10px;
+  outline: none;
+}
+
+.city_input{
+  background-color: transparent;
+  width: 150px; 
+  padding: 0 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  outline: none;
+}
+
+.focus_input{
+  width: 220px; 
+  padding: 0 20px;
+}
+
+.name_input::-webkit-input-placeholder { color: red; }
+.name_input::-moz-placeholder          { color: red; } /* Firefox 19+ */
+.name_input:-moz-placeholder           { color: red; } /* Firefox 18- */
+.name_input:-ms-input-placeholder      { color: red;}
+
+.focus_input::-webkit-input-placeholder { color: red; }
+.focus_input::-moz-placeholder          { color: red; } /* Firefox 19+ */
+.focus_input:-moz-placeholder           { color: red; } /* Firefox 18- */
+.focus_input:-ms-input-placeholder      { color: red;}
+
+.city_input::-webkit-input-placeholder { color: red; }
+.city_input::-moz-placeholder          { color: red; } /* Firefox 19+ */
+.city_input:-moz-placeholder           { color: red; } /* Firefox 18- */
+.city_input:-ms-input-placeholder      { color: red;}
+
 
 h2 {
   opacity: 0.8;

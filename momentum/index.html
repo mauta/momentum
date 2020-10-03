@@ -14,9 +14,15 @@
 
   <div class="wrap-additions">
     <div class="weather-wrap">
-      <div class="city" contenteditable="true"></div>
+      <label class="city_label">
+        <input class="city_input" type="text" placeholder="Ваш город">
+        <span class="city_text city hidden">Нальчик</span>
+      </label>
+      <br>
       <i class="weather-icon owf"></i>
       <div class="temperature"></div>
+      <div class="wind"></div>
+      <div class="humidity"></div>
       <div class="weather-description"></div>
     </div>
 
@@ -35,12 +41,22 @@
     <br>
     <time class="time"></time>
 
-    <h1 class="title">
-      <span class="greeting"></span>
-      <span class="name" contenteditable="true"></span>
-    </h1>
-    <h2 class="title">Сегодня обязательно нужно: </h2>
-    <h2 class="focus title" contenteditable="true"></h2>
+
+    <br>
+      <label class="name_label">
+        <span class="greeting"></span>
+        <input class="name_input" type="text" placeholder="Введите имя">
+        <span class="name_text hidden"> вася</span>
+      </label>
+   
+
+
+      <label class="focus_label">
+        <span class="focus_intro">Сегодня обязательно нужно:</span>
+        <br>
+        <input class="focus_input" type="text" placeholder="Введите дело">
+        <span class="focus_text hidden"> вася</span>
+      </label>
   </div>
 
   <button class="bg-reload" title="новый фон" type="button"></button>
