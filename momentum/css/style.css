@@ -24,10 +24,10 @@ body {
 .time {
   font-size: 7rem;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
-.time_block{
+.time_block {
   width: 90px;
 }
 
@@ -41,71 +41,103 @@ body {
   margin-right: .5rem;
 }
 
-.focus_intro{
+.focus_intro {
   margin-bottom: 2rem;
 }
 
 .name_text,
-.focus_text{
+.focus_text {
   font-size: 2.2rem;
 }
 
-.name_label{
+.name_label {
   margin: 0 auto;
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
-
-
-.hidden{
+.hidden {
   display: none;
 }
 
 .name_input,
-.focus_input{
+.focus_input {
   background-color: transparent;
-  width: 210px; 
+  width: 210px;
   padding: 0 20px;
   font-size: 1.7rem;
   border-radius: 10px;
   outline: none;
 }
 
-.city_input{
+.city_input {
   background-color: transparent;
-  width: 150px; 
+  width: 150px;
   padding: 0 20px;
   font-size: 1rem;
   border-radius: 10px;
   outline: none;
 }
 
-.focus_input{
-  width: 220px; 
+.focus_input {
+  width: 220px;
   padding: 0 20px;
 }
 
-.name_input::-webkit-input-placeholder { color: red; }
-.name_input::-moz-placeholder          { color: red; } /* Firefox 19+ */
-.name_input:-moz-placeholder           { color: red; } /* Firefox 18- */
-.name_input:-ms-input-placeholder      { color: red;}
+.name_input::-webkit-input-placeholder {
+  color: red;
+}
 
-.focus_input::-webkit-input-placeholder { color: red; }
-.focus_input::-moz-placeholder          { color: red; } /* Firefox 19+ */
-.focus_input:-moz-placeholder           { color: red; } /* Firefox 18- */
-.focus_input:-ms-input-placeholder      { color: red;}
+.name_input::-moz-placeholder {
+  color: red;
+}
 
-.city_input::-webkit-input-placeholder { color: red; }
-.city_input::-moz-placeholder          { color: red; } /* Firefox 19+ */
-.city_input:-moz-placeholder           { color: red; } /* Firefox 18- */
-.city_input:-ms-input-placeholder      { color: red;}
+/* Firefox 19+ */
+.name_input:-moz-placeholder {
+  color: red;
+}
 
+/* Firefox 18- */
+.name_input:-ms-input-placeholder {
+  color: red;
+}
 
-h2 {
-  opacity: 0.8;
+.focus_input::-webkit-input-placeholder {
+  color: red;
+}
+
+.focus_input::-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 19+ */
+.focus_input:-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 18- */
+.focus_input:-ms-input-placeholder {
+  color: red;
+}
+
+.city_input::-webkit-input-placeholder {
+  color: red;
+}
+
+.city_input::-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 19+ */
+.city_input:-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 18- */
+.city_input:-ms-input-placeholder {
+  color: red;
 }
 
 .bg-reload {
@@ -154,8 +186,6 @@ h2 {
   box-shadow: 0 0 0 2px white inset, 0 0 0 4px black inset
 }
 
-
-
 .wrap {
   padding: 20px;
   display: flex;
@@ -164,24 +194,20 @@ h2 {
   display: block;
   border-radius: 40%;
   box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
-
 }
 
 .quote-wrap {
-
   padding: 20px;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.3);
   display: block;
   border-radius: 40%;
   box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
-
 }
 
 .quote {
   width: 300px;
 }
-
 
 .weather-wrap {
   display: block;
@@ -195,6 +221,7 @@ h2 {
 
 .wrap-additions {
   width: 95%;
+  min-height: 220px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -211,6 +238,4 @@ h2 {
   .quote-wrap {
     margin: 0 auto;
   }
-
-
 }
