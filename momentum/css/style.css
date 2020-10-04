@@ -15,6 +15,7 @@ body {
   text-align: center;
   height: 100vh;
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   color: #000000;
   transition: background-image 1s ease-in-out;
@@ -22,7 +23,12 @@ body {
 
 .time {
   font-size: 7rem;
- 
+  display: flex;
+  justify-content: space-between; 
+}
+
+.time_block{
+  width: 90px;
 }
 
 .day {
@@ -193,7 +199,7 @@ h2 {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
-  align-items: center;
+  align-items: flex-start;
 }
 
 @media (max-width: 700px) {
