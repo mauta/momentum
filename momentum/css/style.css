@@ -15,6 +15,7 @@ body {
   text-align: center;
   height: 100vh;
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   color: #000000;
   transition: background-image 1s ease-in-out;
@@ -22,18 +23,121 @@ body {
 
 .time {
   font-size: 7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.time_block {
+  width: 90px;
 }
 
 .day {
   font-size: 4rem;
 }
 
-h1 {
-  margin-bottom: 1rem;
+.greeting,
+.focus_intro {
+  font-size: 1.7rem;
+  margin-right: .5rem;
 }
 
-h2 {
-  opacity: 0.8;
+.focus_intro {
+  margin-bottom: 2rem;
+}
+
+.name_text,
+.focus_text {
+  font-size: 2.2rem;
+}
+
+.name_label {
+  margin: 0 auto;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.name_input,
+.focus_input {
+  background-color: transparent;
+  width: 210px;
+  padding: 0 20px;
+  font-size: 1.7rem;
+  border-radius: 10px;
+  outline: none;
+}
+
+.city_input {
+  background-color: transparent;
+  width: 150px;
+  padding: 0 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  outline: none;
+}
+
+.focus_input {
+  width: 220px;
+  padding: 0 20px;
+}
+
+.name_input::-webkit-input-placeholder {
+  color: red;
+}
+
+.name_input::-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 19+ */
+.name_input:-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 18- */
+.name_input:-ms-input-placeholder {
+  color: red;
+}
+
+.focus_input::-webkit-input-placeholder {
+  color: red;
+}
+
+.focus_input::-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 19+ */
+.focus_input:-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 18- */
+.focus_input:-ms-input-placeholder {
+  color: red;
+}
+
+.city_input::-webkit-input-placeholder {
+  color: red;
+}
+
+.city_input::-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 19+ */
+.city_input:-moz-placeholder {
+  color: red;
+}
+
+/* Firefox 18- */
+.city_input:-ms-input-placeholder {
+  color: red;
 }
 
 .bg-reload {
@@ -82,8 +186,6 @@ h2 {
   box-shadow: 0 0 0 2px white inset, 0 0 0 4px black inset
 }
 
-
-
 .wrap {
   padding: 20px;
   display: flex;
@@ -92,24 +194,20 @@ h2 {
   display: block;
   border-radius: 40%;
   box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
-
 }
 
 .quote-wrap {
-
   padding: 20px;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.3);
   display: block;
   border-radius: 40%;
   box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
-
 }
 
 .quote {
   width: 300px;
 }
-
 
 .weather-wrap {
   display: block;
@@ -123,11 +221,12 @@ h2 {
 
 .wrap-additions {
   width: 95%;
+  min-height: 220px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
-  align-items: center;
+  align-items: flex-start;
 }
 
 @media (max-width: 700px) {
@@ -139,6 +238,4 @@ h2 {
   .quote-wrap {
     margin: 0 auto;
   }
-
-
 }
