@@ -11,7 +11,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-top: 30px;
+  padding-top: 3vh;
   text-align: center;
   height: 100vh;
   background-size: cover;
@@ -28,7 +28,7 @@ body {
 }
 
 .time_block {
-  width: 90px;
+  width: 12vh;
 }
 
 .day {
@@ -48,13 +48,14 @@ body {
 .name_text,
 .focus_text {
   font-size: 2.2rem;
+  max-width: 40vh;
 }
 
 .name_label {
   margin: 0 auto;
   margin-bottom: 0.5rem;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
 }
 
@@ -65,88 +66,100 @@ body {
 .name_input,
 .focus_input {
   background-color: transparent;
-  width: 210px;
-  padding: 0 20px;
+  width: 24vh;
+  padding: 0 2vh;
   font-size: 1.7rem;
-  border-radius: 10px;
+  border-radius: 1vh;
   outline: none;
 }
 
 .city_input {
   background-color: transparent;
-  width: 150px;
-  padding: 0 20px;
+  width: 15vh;
+  padding: 0 2vh;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 1vh;
   outline: none;
 }
 
 .focus_input {
-  width: 220px;
-  padding: 0 20px;
+  width: 29vh;
+  padding: 0 2vh;
 }
 
 .name_input::-webkit-input-placeholder {
   color: red;
+  font-size: 1.3rem;
 }
 
 .name_input::-moz-placeholder {
   color: red;
+  font-size: 1.3rem;
 }
 
 /* Firefox 19+ */
 .name_input:-moz-placeholder {
   color: red;
+  font-size: 1.3rem;
 }
 
 /* Firefox 18- */
 .name_input:-ms-input-placeholder {
   color: red;
+  font-size: 1.3rem;
 }
 
 .focus_input::-webkit-input-placeholder {
   color: red;
+  font-size: 1.5rem;
 }
 
 .focus_input::-moz-placeholder {
   color: red;
+  font-size: 1.5rem;
 }
 
 /* Firefox 19+ */
 .focus_input:-moz-placeholder {
   color: red;
+  font-size: 1.5rem;
 }
 
 /* Firefox 18- */
 .focus_input:-ms-input-placeholder {
   color: red;
+  font-size: 1.5rem;
 }
 
 .city_input::-webkit-input-placeholder {
   color: red;
+  font-size: 0.8rem;
 }
 
 .city_input::-moz-placeholder {
   color: red;
+  font-size: 0.8rem;
 }
 
 /* Firefox 19+ */
 .city_input:-moz-placeholder {
   color: red;
+  font-size: 0.8rem;
 }
 
 /* Firefox 18- */
 .city_input:-ms-input-placeholder {
   color: red;
+  font-size: 0.8rem;
 }
 
 .bg-reload {
-  width: 50px;
-  height: 50px;
+  width: 6vh;
+  height: 6vh;
   background-image: url(../images/reload.svg);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 40px 40px;
+  background-size: 5vh 5vh;
   border: none;
   opacity: 0.3;
   border-radius: 50%;
@@ -159,12 +172,12 @@ body {
 }
 
 .btn-quote {
-  width: 50px;
-  height: 50px;
+  width: 6vh;
+  height: 6vh;
   background-image: url(../images/papyrus.svg);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 40px 40px;
+  background-size: 5vh 5vh;
   background-color: transparent;
   border: none;
   border-radius: 50%;
@@ -187,36 +200,37 @@ body {
 }
 
 .wrap {
-  padding: 20px;
+  max-width: 50vh;
+  padding: 2vh;
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   display: block;
-  border-radius: 40%;
-  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
+  border-radius: 30%;
+  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.4);
 }
 
 .quote-wrap {
-  padding: 20px;
+  padding: 2vh;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   display: block;
   border-radius: 40%;
-  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.4);
 }
 
 .quote {
-  width: 300px;
+  width: 34vh;
 }
 
 .weather-wrap {
   display: block;
   padding: 20px;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   display: block;
   border-radius: 40%;
-  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.4);
 }
 
 .wrap-additions {
@@ -230,12 +244,30 @@ body {
 }
 
 @media (max-width: 700px) {
-  .time {
-    font-size: 6rem;
+  body{
+    font-size: 12px;
+  }
+
+  .time,
+  .day {
+    font-size: 3rem;
+    justify-content: center;
   }
 
   .weather-wrap,
   .quote-wrap {
     margin: 0 auto;
+    margin-bottom: 2vh;
   }
+
+  .time_block {
+    width: 10vh;
+  }
+
+  .greeting,
+.focus_intro {
+  font-size: 1.5rem;
+  margin-right: .5rem;
+}
+
 }

@@ -75,6 +75,7 @@
      focusInput.classList.remove('hidden')
      localStorage.setItem('focus', focusInput.value)
    }
+   getFocus() 
  }
 
  function setName(el) {
@@ -104,6 +105,7 @@
    nameText.innerText = localStorage.getItem('name')
    nameInput.classList.add('hidden')
    nameText.classList.remove('hidden')
+   getName() 
    nameInput.blur()
  }
 
@@ -118,6 +120,7 @@
    focusText.innerText = localStorage.getItem('focus')
    focusInput.classList.add('hidden')
    focusText.classList.remove('hidden')
+   getFocus() 
    focusInput.blur()
  }
 
@@ -132,6 +135,7 @@
    cityText.innerText = localStorage.getItem('city')
    cityInput.classList.add('hidden')
    cityText.classList.remove('hidden')
+   getCity()
    cityInput.blur()
  }
 
@@ -149,6 +153,7 @@
      nameInput.classList.remove('hidden')
      localStorage.setItem('name', nameInput.value)
    }
+   getName() 
  }
 
  function setCity(el) {
