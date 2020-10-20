@@ -1,5 +1,6 @@
  const time = document.querySelector('.time')
  const day = document.querySelector('.day')
+ const weekday = document.querySelector('.weekday')
  const greeting = document.querySelector('.greeting')
  const bgReload = document.querySelector('.bg-reload')
  const blockquote = document.querySelector('blockquote')
@@ -16,16 +17,24 @@
  const focusText = document.querySelector('.focus_text')
  const cityInput = document.querySelector('.city_input')
  const cityText = document.querySelector('.city_text')
+ let bgrArr = []
 
  function showTime() {
    const today = new Date()
-   const year = today.getFullYear()
    const hour = today.getHours()
    const min = today.getMinutes()
    const sec = today.getSeconds()
-   day.innerHTML = `${rusMonth()} ${year}`
+   day.innerHTML = rusDay()
+   weekday.innerHTML = rusWeekday()
    time.innerHTML = `<span class="time_block">  ${hour} </span> <span> : </span><span class="time_block">${addZerro(min)} </span> <span> : </span><span class="time_block"> ${addZerro(sec)} </span>`
+   if (sec == 00 && min == 00) {
+     setGreet()
+     setBg()
+
+   }
    setTimeout(showTime, 1000)
+
+
  }
 
  function addZerro(n) {
@@ -34,7 +43,7 @@
    } else return n
  }
 
- function rusMonth() {
+ function rusDay() {
    const date = new Date()
    const options = {
      day: 'numeric',
@@ -43,20 +52,24 @@
    return date.toLocaleDateString('ru-RU', options)
  }
 
- function setBgGreet() {
+ function rusWeekday() {
+   const date = new Date()
+   const options = {
+     weekday: 'long'
+   }
+   return date.toLocaleDateString('ru-RU', options)
+ }
+
+ function setGreet() {
    let today = new Date(),
      hour = today.getHours()
-   if (hour < 5 || hour > 21) {
-     document.body.style.backgroundImage = `url(images/night/${Math.floor(Math.random()*20 + 1)}.jpg)`
+   if (hour < 7 || hour > 23) {
      greeting.textContent = 'Бурной ночи,  '
-   } else if (hour < 11) {
-     document.body.style.backgroundImage = `url(images/morning/${Math.floor(Math.random()*20 + 1)}.jpg)`
+   } else if (hour < 12) {
      greeting.textContent = 'Доброе утречко,  '
-   } else if (hour < 17) {
-     document.body.style.backgroundImage = `url(images/day/${Math.floor(Math.random()*20 + 1)}.jpg)`
+   } else if (hour < 18) {
      greeting.textContent = 'Хорошего дня,  '
    } else {
-     document.body.style.backgroundImage = `url(images/evening/${Math.floor(Math.random()*20 + 1)}.jpg)`
      greeting.textContent = 'Веселого вечера,  '
    }
  }
@@ -75,24 +88,10 @@
      focusInput.classList.remove('hidden')
      localStorage.setItem('focus', focusInput.value)
    }
-   getFocus() 
+   getFocus()
  }
 
- function setName(el) {
-   if (el.type === 'keypress') {
-     if (el.keyCode === 13) {
-       localStorage.setItem('name', nameInput.value)
-       nameText.innerText = localStorage.getItem('name')
-       nameInput.classList.add('hidden')
-       nameText.classList.remove('hidden')
-       nameInput.blur()
-     }
-   } else {
-     nameText.classList.add('hidden')
-     nameInput.classList.remove('hidden')
-     localStorage.setItem('name', nameInput.value)
-   }
- }
+
 
  function newName(el) {
    localStorage.setItem('name', '')
@@ -105,7 +104,8 @@
    nameText.innerText = localStorage.getItem('name')
    nameInput.classList.add('hidden')
    nameText.classList.remove('hidden')
-   getName() 
+   getName()
+   nameInput.setAttribute('placeholder', 'Введите имя')
    nameInput.blur()
  }
 
@@ -120,24 +120,13 @@
    focusText.innerText = localStorage.getItem('focus')
    focusInput.classList.add('hidden')
    focusText.classList.remove('hidden')
-   getFocus() 
+   getFocus()
+   focusInput.setAttribute('placeholder', 'Введите дело')
    focusInput.blur()
  }
 
- function newCity(el) {
-   localStorage.setItem('city', '')
-   cityInput.value = ''
-   setCity(el)
- }
 
- function blurCity() {
-   localStorage.setItem('city', cityInput.value)
-   cityText.innerText = localStorage.getItem('city')
-   cityInput.classList.add('hidden')
-   cityText.classList.remove('hidden')
-   getCity()
-   cityInput.blur()
- }
+
 
  function setName(el) {
    if (el.type === 'keypress') {
@@ -153,7 +142,39 @@
      nameInput.classList.remove('hidden')
      localStorage.setItem('name', nameInput.value)
    }
-   getName() 
+   getName()
+ }
+
+ function clearName() {
+   nameInput.setAttribute('placeholder', '')
+ }
+
+ function clearFocus() {
+   focusInput.setAttribute('placeholder', '')
+ }
+
+ function clearCity() {
+   cityInput.setAttribute('placeholder', '')
+   cityInput.value = ''
+   oldCity = localStorage.getItem('city')
+   console.log(oldCity)
+ }
+
+ function blurCity() {
+   const oldCity = localStorage.getItem('city')
+   console.log('вышли из blur ' + oldCity)
+   localStorage.setItem('city', cityInput.value)
+   cityText.innerText = localStorage.getItem('city')
+   cityInput.classList.add('hidden')
+   cityText.classList.remove('hidden')
+   getCity()
+   cityInput.setAttribute('placeholder', 'Вaш город')
+   cityInput.blur()
+ }
+
+ function newCity(el) {
+   clearCity()
+   setCity(el)
  }
 
  function setCity(el) {
@@ -172,6 +193,7 @@
    }
    getWeather()
  }
+
 
  function getFocus() {
    if (localStorage.getItem('focus') === null || localStorage.getItem('focus') === '') {
@@ -206,32 +228,57 @@
    }
  }
 
+
+ function makeBgArr() {
+   let i = 0
+   while (i < 6) {
+     let randomBg = `images/night/${Math.floor(Math.random()*20 + 1)}.jpg`
+     if (!bgrArr.includes(randomBg)) {
+       bgrArr.push(randomBg)
+       i++
+     }
+   }
+
+   while (i < 12) {
+     let randomBg = `images/morning/${Math.floor(Math.random()*20 + 1)}.jpg`
+     if (!bgrArr.includes(randomBg)) {
+       bgrArr.push(randomBg)
+       i++
+     }
+   }
+   while (i < 18) {
+     let randomBg = `images/day/${Math.floor(Math.random()*20 + 1)}.jpg`
+     if (!bgrArr.includes(randomBg)) {
+       bgrArr.push(randomBg)
+       i++
+     }
+   }
+   while (i < 24) {
+     let randomBg = `images/evening/${Math.floor(Math.random()*20 + 1)}.jpg`
+     if (!bgrArr.includes(randomBg)) {
+       bgrArr.push(randomBg)
+       i++
+     }
+   }
+ }
+
+ makeBgArr()
+
+ function setBg() {
+   const today = new Date()
+   const hour = today.getHours()
+   document.body.style.backgroundImage = `url(${bgrArr[hour]})`
+ }
+
  function changeBgr() {
    const img = document.createElement('img')
-   if (document.body.style.backgroundImage.includes('morning')) {
-     const src = `images/day/${Math.floor(Math.random()*20 + 1)}.jpg`
-     img.src = src
-     img.onload = () => {
-       document.body.style.backgroundImage = `url(${src})`
-     }
-   } else if (document.body.style.backgroundImage.includes('day')) {
-     const src = `images/evening/${Math.floor(Math.random()*20 + 1)}.jpg`
-     img.src = src
-     img.onload = () => {
-       document.body.style.backgroundImage = `url(${src})`
-     }
-   } else if (document.body.style.backgroundImage.includes('evening')) {
-     const src = `images/night/${Math.floor(Math.random()*20 + 1)}.jpg`
-     img.src = src
-     img.onload = () => {
-       document.body.style.backgroundImage = `url(${src})`
-     }
-   } else if (document.body.style.backgroundImage.includes('night')) {
-     const src = `images/morning/${Math.floor(Math.random()*20 + 1)}.jpg`
-     img.src = src
-     img.onload = () => {
-       document.body.style.backgroundImage = `url(${src})`
-     }
+   const urlBg = document.body.style.backgroundImage
+   let numberBgImg = bgrArr.indexOf(urlBg.slice(5, -2))
+   numberBgImg = (numberBgImg + 1) % 24
+   const src = bgrArr[numberBgImg]
+   img.src = src
+   img.onload = () => {
+     document.body.style.backgroundImage = `url(${src})`
    }
  }
 
@@ -246,6 +293,7 @@
    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=08f2a575dda978b9c539199e54df03b0&units=metric`
    const res = await fetch(url)
    const data = await res.json()
+   console.log(data.cod)
    weatherIcon.className = 'weather-icon owf'
    weatherIcon.classList.add(`owf-${data.weather[0].id}`)
    temperature.textContent = `темпер ${data.main.temp}°C`
@@ -257,7 +305,8 @@
 
 
  showTime()
- setBgGreet()
+ setGreet()
+ setBg()
  getName()
  getFocus()
  getQuote()
@@ -266,15 +315,19 @@
 
 
 
+
  bgReload.addEventListener('click', changeBgr)
  btnQuote.addEventListener('click', getQuote)
  document.addEventListener('DOMContentLoaded', getWeather)
  nameInput.addEventListener('keypress', setName)
+ nameInput.addEventListener('click', clearName)
  nameInput.addEventListener('blur', blurName)
  nameText.addEventListener('click', newName)
  cityInput.addEventListener('keypress', setCity)
  cityInput.addEventListener('blur', blurCity)
+ cityInput.addEventListener('click', clearCity)
  cityText.addEventListener('click', newCity)
  focusInput.addEventListener('keypress', setFocus)
  focusInput.addEventListener('blur', blurFocus)
+ focusInput.addEventListener('click', clearFocus)
  focusText.addEventListener('click', newFocus)

@@ -35,6 +35,10 @@ body {
   font-size: 4rem;
 }
 
+.weekday {
+  font-size: 2.5rem;
+}
+
 .greeting,
 .focus_intro {
   font-size: 1.7rem;
@@ -71,6 +75,7 @@ body {
   font-size: 1.7rem;
   border-radius: 1vh;
   outline: none;
+  color:white;
 }
 
 .city_input {
@@ -80,6 +85,7 @@ body {
   font-size: 1rem;
   border-radius: 1vh;
   outline: none;
+  color:white;
 }
 
 .focus_input {
@@ -161,7 +167,8 @@ body {
   background-position: center center;
   background-size: 5vh 5vh;
   border: none;
-  opacity: 0.3;
+  background-color: rgba(0, 0, 0, 0.3);
+opacity: 0.3;
   border-radius: 50%;
   cursor: pointer;
   outline: none;
@@ -172,18 +179,16 @@ body {
 }
 
 .btn-quote {
-  width: 6vh;
+  width: 20vh;
   height: 6vh;
-  background-image: url(../images/papyrus.svg);
+  background-image: url(../images/anonymousHeroQuestions.svg);
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 5vh 5vh;
-  background-color: transparent;
+  background-position: top center;
+  background-size: 20vh 6vh;
   border: none;
-  border-radius: 50%;
   cursor: pointer;
   outline: none;
-  opacity: 1;
+  background-color: transparent;
 }
 
 .btn-quote:hover {
@@ -196,41 +201,46 @@ body {
 
 .bg-reload:active {
   opacity: 0.8;
-  box-shadow: 0 0 0 2px white inset, 0 0 0 4px black inset
+  box-shadow: 0 0 0 2px black inset, 0 0 0 4px white inset
 }
 
 .wrap {
-  max-width: 50vh;
-  padding: 2vh;
+  max-width: 100vh;
+  padding: 5vh;
   display: flex;
+  color: #ffffff;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
   display: block;
   border-radius: 30%;
-  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.3);
 }
 
 .quote-wrap {
   padding: 2vh;
+  padding-top: 0.5vh;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.3);
   display: block;
   border-radius: 40%;
-  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.3);
 }
 
 .quote {
-  width: 34vh;
+  width: 60vh;
+  height: 8vh;
 }
 
 .weather-wrap {
   display: block;
   padding: 20px;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.3);
   display: block;
   border-radius: 40%;
-  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.3);
 }
 
 .wrap-additions {
@@ -268,6 +278,10 @@ body {
 .focus_intro {
   font-size: 1.5rem;
   margin-right: .5rem;
+}
+
+.quote {
+  width: 40vh;
 }
 
 }
