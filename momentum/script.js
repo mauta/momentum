@@ -19,7 +19,10 @@
  const cityText = document.querySelector('.city_text')
  const quote = document.querySelector('.quote')
  const cityLabel = document.querySelector('.city_label')
+ let vh = window.innerHeight * 0.01;
  let bgrArr = []
+
+ document.documentElement.style.setProperty('--vh', `${vh}px`);
 
  function showTime() {
    const today = new Date()
