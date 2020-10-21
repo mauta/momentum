@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/owfont-regular.css">
   <title>momentum</title>
@@ -16,7 +16,7 @@
     <div class="weather-wrap">
       <label class="city_label">
         <input class="city_input" type="text" placeholder="Ваш город">
-        <span class="city_text city hidden"></span>
+        <p class="city_text city hidden"></p>
       </label>
       <br>
       <i class="weather-icon owf"></i>
@@ -26,13 +26,7 @@
       <div class="weather-description"></div>
     </div>
 
-    <div class="quote-wrap">
-      <button class="btn-quote" title="новая подсказка" width='25' ></button>
-      <figure class="quote">
-        <blockquote>
-        </blockquote>
-      </figure>
-    </div>
+    <button class="bg-reload" title="новый фон" type="button"></button>
   </div>
 
   <div class="wrap">
@@ -54,9 +48,15 @@
       <span class="focus_text hidden"> вася</span>
     </label>
   </div>
+  <div class="quote-wrap">
+    <button class="btn-quote" title="новая подсказка" width='25'></button>
+    <p class="quote">
 
-  <button class="bg-reload" title="новый фон" type="button"></button>
+    </p>
+  </div>
+
 
   <script src="script.js"></script>
 </body>
+
 </html>

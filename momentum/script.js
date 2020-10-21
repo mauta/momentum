@@ -17,6 +17,8 @@
  const focusText = document.querySelector('.focus_text')
  const cityInput = document.querySelector('.city_input')
  const cityText = document.querySelector('.city_text')
+ const quote = document.querySelector('.quote')
+ const cityLabel = document.querySelector('.city_label')
  let bgrArr = []
 
  function showTime() {
@@ -30,11 +32,9 @@
    if (sec == 00 && min == 00) {
      setGreet()
      setBg()
-
+     getWeather()
    }
    setTimeout(showTime, 1000)
-
-
  }
 
  function addZerro(n) {
@@ -63,7 +63,7 @@
  function setGreet() {
    let today = new Date(),
      hour = today.getHours()
-   if (hour < 7 || hour > 23) {
+   if (hour < 6 || hour > 23) {
      greeting.textContent = 'Бурной ночи,  '
    } else if (hour < 12) {
      greeting.textContent = 'Доброе утречко,  '
@@ -74,75 +74,74 @@
    }
  }
 
- function setFocus(el) {
-   if (el.type === 'keypress') {
-     if (el.keyCode === 13) {
-       localStorage.setItem('focus', focusInput.value)
-       focusText.innerText = localStorage.getItem('focus')
-       focusInput.classList.add('hidden')
-       focusText.classList.remove('hidden')
-       focusInput.blur()
-     }
-   } else {
-     focusText.classList.add('hidden')
-     focusInput.classList.remove('hidden')
-     localStorage.setItem('focus', focusInput.value)
-   }
-   getFocus()
- }
-
-
-
  function newName(el) {
-   localStorage.setItem('name', '')
    nameInput.value = ''
    setName(el)
  }
 
- function blurName() {
-   localStorage.setItem('name', nameInput.value)
-   nameText.innerText = localStorage.getItem('name')
-   nameInput.classList.add('hidden')
-   nameText.classList.remove('hidden')
-   getName()
-   nameInput.setAttribute('placeholder', 'Введите имя')
-   nameInput.blur()
+ function newCity(el) {
+   cityInput.value = ''
+   setCity(el)
  }
 
  function newFocus(el) {
-   localStorage.setItem('focus', '')
    focusInput.value = ''
    setFocus(el)
  }
 
- function blurFocus() {
-   localStorage.setItem('focus', focusInput.value)
-   focusText.innerText = localStorage.getItem('focus')
-   focusInput.classList.add('hidden')
-   focusText.classList.remove('hidden')
-   getFocus()
-   focusInput.setAttribute('placeholder', 'Введите дело')
-   focusInput.blur()
+ function blurName() {
+   if (nameInput.value.trim() === '') {
+     console.log('из блура')
+     nameText.innerText = localStorage.getItem('name')
+     nameInput.classList.add('hidden')
+     nameText.classList.remove('hidden')
+     getName()
+   } else {
+     localStorage.setItem('name', nameInput.value)
+     nameText.innerText = localStorage.getItem('name')
+     nameInput.classList.add('hidden')
+     nameText.classList.remove('hidden')
+     getName()
+     nameInput.setAttribute('placeholder', 'Введите имя')
+     nameInput.blur()
+   }
+
  }
 
-
-
-
- function setName(el) {
-   if (el.type === 'keypress') {
-     if (el.keyCode === 13) {
-       localStorage.setItem('name', nameInput.value)
-       nameText.innerText = localStorage.getItem('name')
-       nameInput.classList.add('hidden')
-       nameText.classList.remove('hidden')
-       nameInput.blur()
-     }
+ function blurFocus() {
+   if (focusInput.value.trim() === '') {
+     focusText.innerText = localStorage.getItem('focus')
+     focusInput.classList.add('hidden')
+     focusText.classList.remove('hidden')
+     getFocus()
    } else {
-     nameText.classList.add('hidden')
-     nameInput.classList.remove('hidden')
-     localStorage.setItem('name', nameInput.value)
+     localStorage.setItem('focus', focusInput.value)
+     focusText.innerText = localStorage.getItem('focus')
+     focusInput.classList.add('hidden')
+     focusText.classList.remove('hidden')
+     getFocus()
+     focusInput.setAttribute('placeholder', 'Введите дело')
+     focusInput.blur()
    }
-   getName()
+
+ }
+
+ function blurCity() {
+   if (cityInput.value.trim() === '') {
+     cityText.innerText = localStorage.getItem('city')
+     cityInput.classList.add('hidden')
+     cityText.classList.remove('hidden')
+     getCity()
+   } else {
+     localStorage.setItem('city', cityInput.value)
+     cityText.innerText = localStorage.getItem('city')
+     cityInput.classList.add('hidden')
+     cityText.classList.remove('hidden')
+     getCity()
+     cityInput.setAttribute('placeholder', 'Вaш город')
+     cityInput.blur()
+   }
+
  }
 
  function clearName() {
@@ -155,43 +154,72 @@
 
  function clearCity() {
    cityInput.setAttribute('placeholder', '')
-   cityInput.value = ''
-   oldCity = localStorage.getItem('city')
-   console.log(oldCity)
  }
 
- function blurCity() {
-   const oldCity = localStorage.getItem('city')
-   console.log('вышли из blur ' + oldCity)
-   localStorage.setItem('city', cityInput.value)
-   cityText.innerText = localStorage.getItem('city')
-   cityInput.classList.add('hidden')
-   cityText.classList.remove('hidden')
-   getCity()
-   cityInput.setAttribute('placeholder', 'Вaш город')
-   cityInput.blur()
+ function setName(el) {
+   if (el.type === 'keypress') {
+     if (el.keyCode === 13) {
+       if (nameInput.value.trim() === '') {
+         nameText.innerText = localStorage.getItem('name')
+         nameInput.classList.add('hidden')
+         nameText.classList.remove('hidden')
+         getName()
+       } else {
+         localStorage.setItem('name', nameInput.value)
+         nameText.innerText = localStorage.getItem('name')
+         nameInput.classList.add('hidden')
+         nameText.classList.remove('hidden')
+         nameInput.blur()
+       }
+     }
+   } else {
+     nameText.classList.add('hidden')
+     nameInput.classList.remove('hidden')
+   }
  }
 
- function newCity(el) {
-   clearCity()
-   setCity(el)
+ function setFocus(el) {
+   if (el.type === 'keypress') {
+     if (el.keyCode === 13) {
+       if (focusInput.value.trim() === '') {
+         focusText.innerText = localStorage.getItem('focus')
+         focusInput.classList.add('hidden')
+         focusText.classList.remove('hidden')
+         getFocus()
+       } else {
+         localStorage.setItem('focus', focusInput.value)
+         focusText.innerText = localStorage.getItem('focus')
+         focusInput.classList.add('hidden')
+         focusText.classList.remove('hidden')
+         focusInput.blur()
+       }
+     }
+   } else {
+     focusText.classList.add('hidden')
+     focusInput.classList.remove('hidden')
+   }
  }
 
  function setCity(el) {
    if (el.type === 'keypress') {
      if (el.keyCode === 13) {
-       localStorage.setItem('city', cityInput.value)
-       cityText.innerText = localStorage.getItem('city')
-       cityInput.classList.add('hidden')
-       cityText.classList.remove('hidden')
-       cityInput.blur()
+       if (cityInput.value.trim() === '') {
+         cityText.innerText = localStorage.getItem('city')
+         cityInput.classList.add('hidden')
+         cityText.classList.remove('hidden')
+         getCity()
+       } else {
+         localStorage.setItem('city', cityInput.value)
+         cityText.innerText = localStorage.getItem('city')
+         cityInput.classList.add('hidden')
+         cityText.classList.remove('hidden')
+         cityInput.blur()
+       }
      }
    } else {
      cityText.classList.add('hidden')
      cityInput.classList.remove('hidden')
-     localStorage.setItem('city', cityInput.value)
    }
-   getWeather()
  }
 
 
@@ -199,6 +227,7 @@
    if (localStorage.getItem('focus') === null || localStorage.getItem('focus') === '') {
      focusText.classList.add('hidden')
      focusInput.classList.remove('hidden')
+     focusInput.setAttribute('placeholder', 'Введите дело')
    } else {
      focusInput.classList.add('hidden')
      focusText.classList.remove('hidden')
@@ -208,8 +237,10 @@
 
  function getName() {
    if (localStorage.getItem('name') === null || localStorage.getItem('name') === '') {
+     console.log('я туточки getName')
      nameText.classList.add('hidden')
      nameInput.classList.remove('hidden')
+     nameInput.setAttribute('placeholder', 'Введите имя')
    } else {
      nameInput.classList.add('hidden')
      nameText.classList.remove('hidden')
@@ -221,10 +252,12 @@
    if (localStorage.getItem('city') === null || localStorage.getItem('city') === '') {
      cityText.classList.add('hidden')
      cityInput.classList.remove('hidden')
+     cityInput.setAttribute('placeholder', 'Вaш город')
    } else {
      cityInput.classList.add('hidden')
      cityText.classList.remove('hidden')
      cityText.textContent = localStorage.getItem('city')
+     getWeather()
    }
  }
 
@@ -238,7 +271,6 @@
        i++
      }
    }
-
    while (i < 12) {
      let randomBg = `images/morning/${Math.floor(Math.random()*20 + 1)}.jpg`
      if (!bgrArr.includes(randomBg)) {
@@ -281,25 +313,35 @@
      document.body.style.backgroundImage = `url(${src})`
    }
  }
-
  async function getQuote() {
    const url = `quote.json`
    const res = await fetch(url)
    const data = await res.json()
-   blockquote.textContent = data.quoteText[Math.floor(Math.random() * data.quoteText.length)]
+   quote.textContent = data.quoteText[Math.floor(Math.random() * data.quoteText.length)]
  }
+
+
 
  async function getWeather() {
    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=08f2a575dda978b9c539199e54df03b0&units=metric`
    const res = await fetch(url)
    const data = await res.json()
-   console.log(data.cod)
-   weatherIcon.className = 'weather-icon owf'
-   weatherIcon.classList.add(`owf-${data.weather[0].id}`)
-   temperature.textContent = `темпер ${data.main.temp}°C`
-   wind.textContent = `ветер ${data.wind.speed} м/с`
-   humidity.textContent = `влажность ${data.main.humidity} %`
-   weatherDescription.textContent = data.weather[0].description
+   try {
+     weatherIcon.className = 'weather-icon owf'
+     weatherIcon.classList.add(`owf-${data.weather[0].id}`)
+     temperature.textContent = `темпер ${data.main.temp}°C`
+     wind.textContent = `ветер ${data.wind.speed} м/с`
+     humidity.textContent = `влажность ${data.main.humidity} %`
+     weatherDescription.textContent = data.weather[0].description
+   } catch (e) {
+     if (localStorage.getItem('city') !== null && localStorage.getItem('city') !== '') {
+       cityInput.classList.add('hidden')
+       cityText.classList.remove('hidden')
+       cityText.textContent = 'Введите настоящий город'
+       cityInput.value = ''
+       cityInput.setAttribute('placeholder', 'введите город')
+     }
+   }
  }
 
 
