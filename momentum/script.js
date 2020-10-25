@@ -21,6 +21,7 @@
  const cityLabel = document.querySelector('.city_label')
  let vh = window.innerHeight * 0.01;
  let bgrArr = []
+ let isChangeBgAble = true
 
  document.documentElement.style.setProperty('--vh', `${vh}px`);
 
@@ -306,15 +307,21 @@
  }
 
  function changeBgr() {
-   const img = document.createElement('img')
-   const urlBg = document.body.style.backgroundImage
-   let numberBgImg = bgrArr.indexOf(urlBg.slice(5, -2))
-   numberBgImg = (numberBgImg + 1) % 24
-   const src = bgrArr[numberBgImg]
-   img.src = src
-   img.onload = () => {
-     document.body.style.backgroundImage = `url(${src})`
+   if(isChangeBgAble){
+    isChangeBgAble = false
+    console.log(isChangeBgAble)
+    const img = document.createElement('img')
+    const urlBg = document.body.style.backgroundImage
+    let numberBgImg = bgrArr.indexOf(urlBg.slice(5, -2))
+    numberBgImg = (numberBgImg + 1) % 24
+    const src = bgrArr[numberBgImg]
+    img.src = src
+    img.onload = () => {
+      document.body.style.backgroundImage = `url(${src})`
+      setTimeout(()=>isChangeBgAble=true, 700)
+    }
    }
+ 
  }
  async function getQuote() {
    const url = `quote.json`
