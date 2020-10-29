@@ -114,7 +114,7 @@ body {
   color: white;
   font-family: 'Anonymous Pro', monospace;
   text-shadow: 1px 1px 4px rgb(31, 23, 17), 1px 1px 7px #5f462d;
-
+  cursor: pointer;
 }
 
 .focus_input {
